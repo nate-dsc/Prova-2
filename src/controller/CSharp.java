@@ -23,4 +23,9 @@ public class CSharp extends Planeta {
 				+ "Mesmo sendo de alto nivel, C# permite acessar a memoria como seus irmaos C e C++.\n"
 				+ "Ainda sim, C# nao eh tao popular quanto seus irmaos.\033[0m");
 	}
+	
+	public char tipo()
+	{
+		return '5';
+	}
 }

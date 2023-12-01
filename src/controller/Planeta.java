@@ -7,11 +7,12 @@ public abstract class Planeta extends Astro {
 	protected int velocidade;
 	protected int numeroDeTrajetoria;
 	protected int posicaoQuadrangular;
+	protected float horasPorInstante;
+	
+	protected int tempoTotal = 0;
 	protected int unidadesAndadas = 0;
 	protected int unidadesAndadasTotal = 0;
 	protected int numeroDeVoltas = 0;
-	
-	protected float horasPorInstante;
 	protected float horasTotais = 0;
 	protected float horasPassadas = 0;
 	protected float diasTotais = 0;
@@ -32,6 +33,7 @@ public abstract class Planeta extends Astro {
 	{
 		if(this.existe())
 		{
+			this.tempoTotal += tempo;
 			this.grade.limpar(this.coord);
 			this.unidadesAndadas = tempo*this.velocidade;
 			this.unidadesAndadasTotal += this.unidadesAndadas;
@@ -80,14 +82,6 @@ public abstract class Planeta extends Astro {
 			this.coord.setCoord(8 + this.numeroDeOrbita, 8 - 7*this.numeroDeOrbita + this.posicaoQuadrangular);
 		}
 	}
-	
- 	public void atualizarVelocidadeMedia(int tempoTotal)
-	{
-		if(tempoTotal != 0)
-			this.velocidadeMedia = ((float)this.unidadesAndadasTotal)/((float)tempoTotal);
-		else
-			this.velocidadeMedia = 0;
-	}
  	
  	//Metodos para interagir com devs e bugs:
 	public void aumentarVelocidade()
@@ -121,35 +115,35 @@ public abstract class Planeta extends Astro {
 		return 'P';
 	}
 	
-	public void mostrarDados()
-	{
-		System.out.println("\033[36;1m=== #" + (8 - this.numeroDeOrbita) + " === >>> " + this.nome + " <<< ===\033[0m");
-		System.out.println("Velocidade atual: " + this.velocidade + " unidades/instante");
-		System.out.printf("Horas totais: %.1f horas (%.2f dias de 24h)%n", this.horasTotais, this.diasTotais);
-		System.out.printf("Horas passadas na ultima rodada: %.1f horas (%.2f dias de 24h)%n", this.horasPassadas, this.diasPassados);
-		System.out.printf("Anos completos passados: %d anos JavaLar%n", this.numeroDeVoltas);
-		System.out.printf("Anos totais: %.2f anos JavaLar%n", (float)this.unidadesAndadasTotal/this.numeroDeTrajetoria);
-		System.out.println("");
-	}
-
-	public void relatorioCompletoPlaneta()
-	{
-		System.out.println("\033[36;1m=== #" + (8 - this.numeroDeOrbita) + " === >>> " + this.nome + " <<< ===\033[0m");
-		if(this.existe()) System.out.println("Status: \u001b[38;5;10mEm orbita\u001b[0m");
-		else System.out.println("Status final: \u001b[38;5;1mDestruido\u001b[0m");
-		System.out.println("Bugs colididos: " + this.bugsRecebidos);
-		System.out.println("Devs recebidos: " + this.devsRecebidos);
-		System.out.printf("Velocidade media: %.2f unidades/instante%n", this.velocidadeMedia);
-		System.out.printf("Velocidade de rotacao: %.4f dias/instante%n", this.horasPorInstante/24);
-		System.out.printf("Dias totais: %.2f dias%n", this.diasTotais);
-		System.out.printf("Anos completos passados: %d anos JavaLar%n", this.numeroDeVoltas);
-		System.out.printf("Anos totais: %.2f anos JavaLar%n", (float)this.unidadesAndadasTotal/this.numeroDeTrajetoria);
-		System.out.println("");
-		this.info();
-		System.out.println("");
-	}
 	
 	//Metodo abstrato pra cada planeta implementar um pequeno paragrafo:
 	public abstract void info();
+	
+	//Getters para dados do relatório:
+	public int getBugsRecebidos()
+	{
+		return this.bugsRecebidos;
+	}
+	
+	public int getDevsRecebidos()
+	{
+		return this.bugsRecebidos;
+	}
+	
+	public int getVelocidadeMedia()
+	{
+		this.velocidadeMedia = this.unidadesAndadasTotal/this.tempoTotal;
+		return (int) this.velocidadeMedia;
+	}
+	
+	public int getDias()
+	{
+		return (int) this.diasTotais;
+	}
+	
+	public int getAnos()
+	{
+		return this.numeroDeVoltas;
+	}
 	
 }

@@ -22,4 +22,9 @@ public class C extends Planeta {
 				+ "Apesar da idade (criada em 1972), C eh uma das linguagens mais populares ate hoje.\n"
 				+ "C tambem influenciou o surgimento das linguagens Java e C++.\033[0m");
 	}
+	
+	public char tipo()
+	{
+		return '7';
+	}
 }

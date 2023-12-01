@@ -23,4 +23,9 @@ public class PHP extends Planeta {
 				+ "Mas o PHP nao para apenas na web.\n"
 				+ "A linguagem ja foi usada para criar GUIs avulsas e ate mesmo controlar drones.\033[0m");
 	}
+	
+	public char tipo()
+	{
+		return '4';
+	}
 }

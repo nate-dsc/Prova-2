@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 
 import javax.swing.JPanel;
@@ -9,16 +10,21 @@ import controller.Grade;
 
 public class PainelGrade extends JPanel {
 
-	PainelMenor[][] grade;
-	int[][] ints;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
-	public PainelGrade(Grade gradeSis)
+	Grade grade;
+	PainelMenor[][] malha = new PainelMenor[15][15];
+	char[][] tipos;
+	
+	public PainelGrade(Grade grade)
 	{
-		setBackground(Color.RED);
-		grade = new PainelMenor[15][15];
-		ints = gradeSis.passarInts();
-		setSize(800, 800);
-		setLayout(new GridLayout(15, 15, 5, 5));
+		this.grade = grade;
+		setBackground(Color.BLACK);
+		setPreferredSize(new Dimension(750, 750));
+		setLayout(new GridLayout(15, 15, 0, 0));
 		criarPainel();
 		atualizarPainel();
 	}
@@ -29,22 +35,21 @@ public class PainelGrade extends JPanel {
 		{
 			for(int coluna = 0; coluna < 15; coluna++)
 			{
-				grade[linha][coluna] = new PainelMenor(ints[linha][coluna]);
-				add(grade[linha][coluna]);
+				malha[linha][coluna] = new PainelMenor();
+				add(malha[linha][coluna]);
 			}
 		}
 	}
 	
-	private void atualizarPainel()
+	public void atualizarPainel()
 	{
-		setVisible(false);
-		for(int linha = 0; linha < 15; linha++)
+		tipos = grade.getTipos();
+		for(int coluna = 14; coluna >= 0; coluna--)
 		{
-			for(int coluna = 0; coluna < 15; coluna++)
+			for(int linha = 0; linha < 15; linha++)
 			{
-				grade[linha][coluna].atualizarPainelMenor(ints[linha][coluna]);
+				malha[linha][14 - coluna].atualizarPainelMenor(tipos[14 - coluna][14 - linha]);
 			}
 		}
-		setVisible(true);
 	}
 }

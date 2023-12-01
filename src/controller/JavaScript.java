@@ -24,4 +24,9 @@ public class JavaScript extends Planeta {
 				+ "Isso pois foi criada para executar scripts no cliente (computador do usuario) de navegadores.\n"
 				+ "Assim, servidores nao precisam fazer o processamento de tudo que acontece no site.\033[0m");
 	}
+	
+	public char tipo()
+	{
+		return '2';
+	}
 }

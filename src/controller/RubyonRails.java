@@ -22,4 +22,9 @@ public class RubyonRails extends Planeta {
 				+ "O framework facilita e incentiva o uso de padroes da industria, como JSON para transferencia de dados.\n"
 				+ "Apesar de relativamente novo (19 anos), Ruby on Rails ja demonstra influencia sobre varios outros frameworks.\033[0m");
 	}
+	
+	public char tipo()
+	{
+		return '3';
+	}
 }

@@ -6,7 +6,8 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		new Janela(new Sistema());
+		Sistema sistema = new Sistema();
+		new Janela(sistema);
 
 	}
 

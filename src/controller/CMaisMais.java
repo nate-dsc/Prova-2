@@ -23,4 +23,9 @@ public class CMaisMais extends Planeta {
 				+ "Diferente do C, C++ permite a orientacao a objetos.\n"
 				+ "Assim, C++ tambem eh usada para aplicacoes como jogos e sistemas operacionais\033[0m");
 	}
+	
+	public char tipo()
+	{
+		return '6';
+	}
 }

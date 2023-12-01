@@ -23,4 +23,9 @@ public class Python extends Planeta {
 				+ "No entanto, Python nem sempre eh bem perfomante.\n"
 				+ "Apesar da popularidade recente, Python ja tem 32 anos!.\033[0m");
 	}
+	
+	public char tipo()
+	{
+		return '1';
+	}
 }
